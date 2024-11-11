@@ -6,7 +6,6 @@
 
 import streamlit as st
 import pandas as pd
-from prettytable import PrettyTable  # Assuming PrettyTable is still used for your table output
 import io
 
 # Define your CSV file paths here (use raw strings or double backslashes)
