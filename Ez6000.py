@@ -40,10 +40,10 @@ swl_data = load_excavator_swl_data(swl_csv)
 
 # Main Streamlit App UI
 def app():
-    st.title('ONTRAC XMOR Bucket Solution')
+    st.title('ONTRAC XMOR® Bucket Solution')
 
 # Streamlit UI
-st.title("ONTRAC XMOR Bucket Solution\n\n")
+st.title("ONTRAC XMOR® Bucket Solution\n\n")
 st.title("Excavator Selection")
 
 # Excavator inputs
@@ -157,7 +157,7 @@ if calculate_button:
         optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl)
     
         if optimal_bucket:
-            st.write(f"XMOR Bucket Solution: {optimal_bucket['bucket_name']} ({optimal_bucket['bucket_size']} m³)")
+            st.write(f"Your ONTRAC XMOR® Bucket Solution is the: {optimal_bucket['bucket_name']} ({optimal_bucket['bucket_size']} m³)")
             st.write(f"Total Suspended Load: {optimal_bucket['total_bucket_weight']} kg")
         else:
             st.write("No suitable bucket found within SWL limits.")
