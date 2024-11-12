@@ -154,7 +154,7 @@ if calculate_button:
         selected_bucket_csv = bhc_bucket_csv if select_bhc else bucket_csv
         bucket_data = load_bucket_data(selected_bucket_csv)
     
-        optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl, process_user_data)
+        optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl)
     
         if optimal_bucket:
             st.write(f"Good news! ONTRAC could improve your productivity!")
