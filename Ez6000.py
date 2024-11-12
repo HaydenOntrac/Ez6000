@@ -157,8 +157,8 @@ if calculate_button:
         optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl)
     
         if optimal_bucket:
-            st.write(f"Optimal Bucket: {optimal_bucket['bucket_name']} ({optimal_bucket['bucket_size']} m³)")
-            st.write(f"Total Bucket Weight: {optimal_bucket['total_bucket_weight']} kg")
+            st.write(f"XMOR Bucket Solution: {optimal_bucket['bucket_name']} ({optimal_bucket['bucket_size']} m³)")
+            st.write(f"Total Suspended Load: {optimal_bucket['total_bucket_weight']} kg")
         else:
             st.write("No suitable bucket found within SWL limits.")
     else:
