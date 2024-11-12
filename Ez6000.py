@@ -154,10 +154,10 @@ if calculate_button:
         selected_bucket_csv = bhc_bucket_csv if select_bhc else bucket_csv
         bucket_data = load_bucket_data(selected_bucket_csv)
     
-        optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl)
+        optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl, process_user_data)
     
         if optimal_bucket:
-            st.write(f"Good news! ONTRAC could improve your productivity by up to {(1.1 * total_tonnage_per_hour_new - total_tonnage_per_hour_old) / total_tonnage_per_hour_old * 100:.0f}%")
+            st.write(f"Good news! ONTRAC could improve your productivity by up to {process_user_data['productivity']"})
             st.write(f"Your ONTRAC XMOR® Bucket Solution is the: {optimal_bucket['bucket_name']} ({optimal_bucket['bucket_size']} m³)")
             st.write(f"Total Suspended Load: {optimal_bucket['total_bucket_weight']} kg")
         else:
@@ -230,6 +230,8 @@ if calculate_button:
             # Total number of trucks per day
             total_trucks_per_day_old = total_tonnage_per_day_old / dump_truck_payload * 1000
             total_trucks_per_day_new = total_tonnage_per_day_new / dump_truck_payload * 1000
+
+            Productivity = f"{(1.1 * total_tonnage_per_hour_new - total_tonnage_per_hour_old) / total_tonnage_per_hour_old * 100:.0}%"
     
             # Create a DataFrame for the comparison table
             data = {
