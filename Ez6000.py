@@ -256,7 +256,7 @@ if calculate_button:
                 '10% Improved Cycle Time Simulation','Number of Swings', 'Tonnes/hr', 'Total Volume (m³)', 
                 'Total Tonnes', 'Total Trucks'
             ],
-            'OLD Bucket': [
+            'Old Bucket': [
                 '', f"{old_capacity:.1f}", f"{user_data['material_density']:.0f}", f"{old_payload:.0f}", 
                 f"{old_total_load:.0f}", '', 
                 '', f"{dump_truck_payload:.0f}", f"{swings_to_fill_truck_old:.1f}", 
