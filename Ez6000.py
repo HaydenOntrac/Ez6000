@@ -14,6 +14,14 @@ bucket_csv = 'bucket_data.csv'  # Make sure this file exists
 bhc_bucket_csv = 'bhc_bucket_data.csv'  # Make sure this file exists
 dump_truck_csv = 'dump_trucks.csv'  # Path to dump truck CSV
 
+# Function to generate Excel file
+def generate_excel(df):
+    output = io.BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+        df.to_excel(writer, index=False, sheet_name='Productivity Study')
+    # Return the Excel content as bytes
+    return output.getvalue()
+
 # Load datasets
 def load_bucket_data(bucket_csv):
     return pd.read_csv(bucket_csv)
@@ -307,14 +315,7 @@ if calculate_button:
         st.write("No matching excavator configuration found!")
 else:
     st.write("Please select options and press 'Calculate' to proceed.")
-        
-# Function to generate Excel file
-def generate_excel(df):
-    output = io.BytesIO()
-    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        df.to_excel(writer, index=False, sheet_name='Productivity Study')
-    # Return the Excel content as bytes
-    return output.getvalue()
+    
 
 # Run the Streamlit app
 if __name__ == '__main__':
