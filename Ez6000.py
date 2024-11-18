@@ -178,7 +178,7 @@ if calculate_button:
     else:
         st.write("No matching excavator configuration found!")
     
-    def process_user_data(user_data, is_bhc_selected):
+def process_user_data(user_data, is_bhc_selected):
         selected_bucket_csv = bhc_bucket_csv if is_bhc_selected else bucket_csv
         bucket_data = load_bucket_data(selected_bucket_csv)
         swl = find_matching_swl(user_data)
