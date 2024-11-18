@@ -48,10 +48,11 @@ swl_data = load_excavator_swl_data(swl_csv)
 
 # Main Streamlit App UI
 def app():
+    st.write('ONTRAC XMOR® Bucket Solution')
 
 # Streamlit UI
-    st.title("ONTRAC XMOR® Bucket Solution\n\n")
-    st.title("Excavator Selection")
+st.title("ONTRAC XMOR® Bucket Solution\n\n")
+st.title("Excavator Selection")
 
 # Step 1: Select Excavator Make
 excavator_make = st.selectbox("Select Excavator Make", swl_data['make'].unique())
