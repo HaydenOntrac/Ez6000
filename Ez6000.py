@@ -46,9 +46,7 @@ def load_excavator_swl_data(swl_csv):
 dump_truck_data = load_dump_truck_data(dump_truck_csv)
 swl_data = load_excavator_swl_data(swl_csv)
 
-# Main Streamlit App UI
-def app():
-    st.write('ONTRAC XMOR® Bucket Solution')
+#APP
 
 # Streamlit UI
 st.title("ONTRAC XMOR® Bucket Solution\n\n")
