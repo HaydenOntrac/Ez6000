@@ -172,8 +172,6 @@ calculate_button = st.button("Calculate")
 if calculate_button:
     swl = find_matching_swl(user_data)
     if swl:
-        st.write(f"Matching Excavator SWL: {swl} kg")
-    
         # Load selected bucket data
         selected_bucket_csv = bhc_bucket_csv if select_bhc else bucket_csv
         bucket_data = load_bucket_data(selected_bucket_csv)
@@ -181,9 +179,10 @@ if calculate_button:
         optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl)
     
         if optimal_bucket:
-            st.write(f"Good news! ONTRAC could improve your productivity!")
-            st.write(f"Your ONTRAC XMOR® Bucket Solution is the: {optimal_bucket['bucket_name']} ({optimal_bucket['bucket_size']} m³)")
+            st.success(f"Good news! ONTRAC could improve your productivity!")
+            st.success(f"Your ONTRAC XMOR® Bucket Solution is the: {optimal_bucket['bucket_name']} ({optimal_bucket['bucket_size']} m³)")
             st.write(f"Total Suspended Load: {optimal_bucket['total_bucket_weight']} kg")
+            st.write(f"Matching Excavator SWL: {swl} kg")
 
             # Show table
             old_capacity = user_data['current_bucket_size']
