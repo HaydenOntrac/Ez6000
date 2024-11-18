@@ -48,7 +48,6 @@ swl_data = load_excavator_swl_data(swl_csv)
 
 # Main Streamlit App UI
 def app():
-    st.title('ONTRAC XMOR® Bucket Solution')
 
 # Streamlit UI
 st.title("ONTRAC XMOR® Bucket Solution\n\n")
