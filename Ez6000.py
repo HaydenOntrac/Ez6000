@@ -160,6 +160,19 @@ if calculate_button:
             st.write(f"Good news! ONTRAC could improve your productivity!")
             st.write(f"Your ONTRAC XMOR® Bucket Solution is the: {optimal_bucket['bucket_name']} ({optimal_bucket['bucket_size']} m³)")
             st.write(f"Total Suspended Load: {optimal_bucket['total_bucket_weight']} kg")
+
+            # Show table
+            df = process_user_data(user_data, select_bhc)
+            if df is not None:
+                st.title('Bucket Sizing and Productivity Calculator')
+                st.dataframe(df)
+                excel_file = generate_excel(df)
+                st.download_button(
+                    label="Download Excel File",
+                    data=excel_file,
+                    file_name="productivity_study.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
         else:
             st.write("No suitable bucket found within SWL limits.")
     else:
@@ -317,19 +330,6 @@ def generate_excel(df):
         df.to_excel(writer, index=False, sheet_name='Productivity Study')
     # Return the Excel content as bytes
     return output.getvalue()
-
-# Show table
-df = process_user_data(user_data, select_bhc)
-if df is not None:
-    st.title('Bucket Sizing and Productivity Calculator')
-    st.dataframe(df)
-    excel_file = generate_excel(df)
-    st.download_button(
-        label="Download Excel File",
-        data=excel_file,
-        file_name="productivity_study.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
 
 # Run the Streamlit app
 if __name__ == '__main__':
