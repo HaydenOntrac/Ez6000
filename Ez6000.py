@@ -54,19 +54,35 @@ def app():
 st.title("ONTRAC XMOR® Bucket Solution\n\n")
 st.title("Excavator Selection")
 
-# Excavator inputs
+# Step 1: Select Excavator Make
 excavator_make = st.selectbox("Select Excavator Make", swl_data['make'].unique())
-excavator_model = st.selectbox("Select Excavator Model", swl_data[swl_data['make'] == excavator_make]['model'].unique())
 
-boom_length = st.selectbox("Select Boom Length (m)", swl_data[swl_data['model'] == excavator_model]['boom_length'].unique())
-arm_length = st.selectbox("Select Arm Length (m)", swl_data[swl_data['model'] == excavator_model]['arm_length'].unique())
-cwt = st.selectbox("Select Counterweight (CWT in kg)", swl_data[swl_data['model'] == excavator_model]['CWT'].unique())
-shoe_width = st.selectbox("Select Shoe Width (mm)", swl_data[swl_data['model'] == excavator_model]['shoe_width'].unique())
-reach = st.selectbox("Select Reach (m)", swl_data[swl_data['model'] == excavator_model]['reach'].unique())
+# Step 2: Filter by selected make and select Excavator Model
+filtered_data_make = swl_data[swl_data['make'] == excavator_make]
+excavator_model = st.selectbox("Select Excavator Model", filtered_data_make['model'].unique())
 
-st.title("Dump Truck Selection")
+# Step 3: Filter by selected model and select Boom Length
+filtered_data_model = filtered_data_make[filtered_data_make['model'] == excavator_model]
+boom_length = st.selectbox("Select Boom Length (m)", filtered_data_model['boom_length'].unique())
+
+# Step 4: Filter further by selected boom length and select Arm Length
+filtered_data_boom = filtered_data_model[filtered_data_model['boom_length'] == boom_length]
+arm_length = st.selectbox("Select Arm Length (m)", filtered_data_boom['arm_length'].unique())
+
+# Step 5: Filter further by selected arm length and select Counterweight
+filtered_data_arm = filtered_data_boom[filtered_data_boom['arm_length'] == arm_length]
+cwt = st.selectbox("Select Counterweight (CWT in kg)", filtered_data_arm['CWT'].unique())
+
+# Step 6: Filter further by selected counterweight and select Shoe Width
+filtered_data_cwt = filtered_data_arm[filtered_data_arm['CWT'] == cwt]
+shoe_width = st.selectbox("Select Shoe Width (mm)", filtered_data_cwt['shoe_width'].unique())
+
+# Step 7: Filter further by selected shoe width and select Reach
+filtered_data_shoe = filtered_data_cwt[filtered_data_cwt['shoe_width'] == shoe_width]
+reach = st.selectbox("Select Reach (m)", filtered_data_shoe['reach'].unique())
 
 # Dump truck inputs
+st.title("Dump Truck Selection")
 truck_brand = st.selectbox("Select Dump Truck Brand", dump_truck_data['brand'].unique())
 truck_type = st.selectbox("Select Dump Truck Type", dump_truck_data[dump_truck_data['brand'] == truck_brand]['type'].unique())
 truck_model = st.selectbox("Select Dump Truck Model", dump_truck_data[(dump_truck_data['brand'] == truck_brand) & 
