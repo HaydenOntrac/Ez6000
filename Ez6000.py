@@ -7,6 +7,7 @@
 import streamlit as st
 import pandas as pd
 import io
+import math
 
 # Define your CSV file paths here (use raw strings or double backslashes)
 swl_csv = 'excavator_swl.csv'  # Ensure this file exists
@@ -208,21 +209,13 @@ if calculate_button:
                 current_payload = dump_truck_payload
                 while current_payload <= max_payload:
                     swings_to_fill_truck_new = current_payload / new_payload
-                    if abs(swings_to_fill_truck_new - round(swings_to_fill_truck_new)) <= 0.1:
-                        return current_payload, round(swings_to_fill_truck_new)
-                    current_payload += increment
-            
-                # If ±0.1 is not possible, try ±0.2 tolerance
-                current_payload = dump_truck_payload  # Reset payload for ±0.2 tolerance
-                while current_payload <= max_payload:
-                    swings_to_fill_truck_new = current_payload / new_payload
-                    if abs(swings_to_fill_truck_new - round(swings_to_fill_truck_new)) <= 0.2:
-                        return current_payload, round(swings_to_fill_truck_new)
+                    if abs(swings_to_fill_truck_new - math.ceil(swings_to_fill_truck_new)) <= 0.14:
+                        return current_payload, math.ceil(swings_to_fill_truck_new)
                     current_payload += increment
             
                 # If no suitable payload is found, return the original payload with calculated swings
                 swings_to_fill_truck_new = dump_truck_payload / new_payload
-                return dump_truck_payload, round(swings_to_fill_truck_new)
+                return dump_truck_payload, math.ceil(swings_to_fill_truck_new)
 
             
             swings_to_fill_truck_new = dump_truck_payload / new_payload
