@@ -162,32 +162,6 @@ if calculate_button:
             st.write(f"Total Suspended Load: {optimal_bucket['total_bucket_weight']} kg")
 
             # Show table
-            df = process_user_data(user_data, select_bhc)
-            if df is not None:
-                st.title('Bucket Sizing and Productivity Calculator')
-                st.dataframe(df)
-                excel_file = generate_excel(df)
-                st.download_button(
-                    label="Download Excel File",
-                    data=excel_file,
-                    file_name="productivity_study.xlsx",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                )
-        else:
-            st.write("No suitable bucket found within SWL limits.")
-    else:
-        st.write("No matching excavator configuration found!")
-    
-def process_user_data(user_data, is_bhc_selected):
-        selected_bucket_csv = bhc_bucket_csv if is_bhc_selected else bucket_csv
-        bucket_data = load_bucket_data(selected_bucket_csv)
-        swl = find_matching_swl(user_data)
-        if swl is None:
-            return
-    
-        optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl)
-        
-        if optimal_bucket:
             old_capacity = user_data['current_bucket_size']
             new_capacity = optimal_bucket['bucket_size']
             old_payload = calculate_bucket_load(old_capacity, user_data['material_density'])
@@ -316,10 +290,21 @@ def process_user_data(user_data, is_bhc_selected):
         }
             
             df = pd.DataFrame(data)
-            return df
+            
+            if df is not None:
+                st.title('Bucket Sizing and Productivity Calculator')
+                st.dataframe(df)
+                excel_file = generate_excel(df)
+                st.download_button(
+                    label="Download Excel File",
+                    data=excel_file,
+                    file_name="productivity_study.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
         else:
-            return None
-
+            st.write("No suitable bucket found within SWL limits.")
+    else:
+        st.write("No matching excavator configuration found!")
 else:
     st.write("Please select options and press 'Calculate' to proceed.")
         
