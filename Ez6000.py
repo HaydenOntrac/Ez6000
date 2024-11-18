@@ -200,33 +200,33 @@ if calculate_button:
             new_total_load = optimal_bucket['total_bucket_weight']  # Corrected variable
     
     
-        def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
-            max_payload = dump_truck_payload * 1.10  # Allow up to 10% adjustment
-            increment = dump_truck_payload * 0.01   # Fine adjustment increments
-        
-            # Try to achieve swing values within ±0.1 tolerance
-            current_payload = dump_truck_payload
-            while current_payload <= max_payload:
-                swings_to_fill_truck_new = current_payload / new_payload
-                if abs(swings_to_fill_truck_new - round(swings_to_fill_truck_new)) <= 0.1:
-                    return current_payload, round(swings_to_fill_truck_new)
-                current_payload += increment
-        
-            # If ±0.1 is not possible, try ±0.2 tolerance
-            current_payload = dump_truck_payload  # Reset payload for ±0.2 tolerance
-            while current_payload <= max_payload:
-                swings_to_fill_truck_new = current_payload / new_payload
-                if abs(swings_to_fill_truck_new - round(swings_to_fill_truck_new)) <= 0.2:
-                    return current_payload, round(swings_to_fill_truck_new)
-                current_payload += increment
-        
-            # If no suitable payload is found, return the original payload with calculated swings
-            swings_to_fill_truck_new = dump_truck_payload / new_payload
-            return dump_truck_payload, round(swings_to_fill_truck_new)
-
-
-            # Return the closest achievable value
-            return dump_truck_payload, swings_to_fill_truck_new
+            def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
+                max_payload = dump_truck_payload * 1.10  # Allow up to 10% adjustment
+                increment = dump_truck_payload * 0.01   # Fine adjustment increments
+            
+                # Try to achieve swing values within ±0.1 tolerance
+                current_payload = dump_truck_payload
+                while current_payload <= max_payload:
+                    swings_to_fill_truck_new = current_payload / new_payload
+                    if abs(swings_to_fill_truck_new - round(swings_to_fill_truck_new)) <= 0.1:
+                        return current_payload, round(swings_to_fill_truck_new)
+                    current_payload += increment
+            
+                # If ±0.1 is not possible, try ±0.2 tolerance
+                current_payload = dump_truck_payload  # Reset payload for ±0.2 tolerance
+                while current_payload <= max_payload:
+                    swings_to_fill_truck_new = current_payload / new_payload
+                    if abs(swings_to_fill_truck_new - round(swings_to_fill_truck_new)) <= 0.2:
+                        return current_payload, round(swings_to_fill_truck_new)
+                    current_payload += increment
+            
+                # If no suitable payload is found, return the original payload with calculated swings
+                swings_to_fill_truck_new = dump_truck_payload / new_payload
+                return dump_truck_payload, round(swings_to_fill_truck_new)
+    
+    
+                # Return the closest achievable value
+                return dump_truck_payload, swings_to_fill_truck_new
 
             
             swings_to_fill_truck_new = dump_truck_payload / new_payload
