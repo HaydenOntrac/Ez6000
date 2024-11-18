@@ -206,7 +206,7 @@ if calculate_button:
                 increment = dump_truck_payload * 0.001  # Fine adjustment increments
 
             # Try to achieve swing values within ±0.1 first
-                while dump_truck_payload <= max_payload:
+            while dump_truck_payload <= max_payload:
                         swings_to_fill_truck_new = dump_truck_payload / new_payload
                     if abs(swings_to_fill_truck_new - round(swings_to_fill_truck_new)) <= 0.1:
                         return dump_truck_payload, swings_to_fill_truck_new
