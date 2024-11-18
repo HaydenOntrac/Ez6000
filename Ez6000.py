@@ -223,10 +223,6 @@ if calculate_button:
                 # If no suitable payload is found, return the original payload with calculated swings
                 swings_to_fill_truck_new = dump_truck_payload / new_payload
                 return dump_truck_payload, round(swings_to_fill_truck_new)
-    
-    
-                # Return the closest achievable value
-                return dump_truck_payload, swings_to_fill_truck_new
 
             
             swings_to_fill_truck_new = dump_truck_payload / new_payload
