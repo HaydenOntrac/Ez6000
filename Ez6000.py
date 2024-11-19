@@ -147,9 +147,9 @@ def adjust_payload_for_old_bucket(dump_truck_payload, old_payload):
     # Try to achieve swing values within ±0.14 tolerance
     current_payload = dump_truck_payload
     while current_payload <= max_payload:
-        swings_to_fill_truck_new = current_payload / new_payload
-        if abs(swings_to_fill_truck_new - math.ceil(swings_to_fill_truck_new)) <= 0.14:
-            return current_payload, math.ceil(swings_to_fill_truck_new)
+        swings_to_fill_truck_old = current_payload / new_payload
+        if abs(swings_to_fill_truck_old - math.ceil(swings_to_fill_truck_old)) <= 0.14:
+            return current_payload, math.ceil(swings_to_fill_truck_old)
         current_payload += increment
 
     # If no suitable payload is found, return the original payload with calculated swings
