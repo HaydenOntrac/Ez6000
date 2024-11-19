@@ -210,6 +210,7 @@ if calculate_button:
         # Load selected bucket data
         selected_bucket_csv = bhc_bucket_csv if select_bhc else bucket_csv
         bucket_data = load_bucket_data(selected_bucket_csv)
+        dump_truck_data = load_dump_truck_data(dump_truck_csv)
     
         optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl)
     
