@@ -283,7 +283,7 @@ if calculate_button:
             'Description': [
                 'Side-By-Side Bucket Comparison', 'Capacity (m³)', 'Material Density (kg/m³)', 'Bucket Payload (kg)', 
                 'Total Suspended Load (kg)', '', 
-                'Loadout Productivity & Truck Pass Simulation*', 'Dump Truck Payload (kg)', 'Avg No. Swings to Fill Truck', 
+                'Loadout Productivity & Truck Pass Simulation', 'Dump Truck Payload (kg)', 'Avg No. Swings to Fill Truck', 
                 'Time to Fill Truck (min)', 'Avg Trucks/Hour @ 75% eff', 'Swings/Hour', 'Tonnes/Hour', '', 
                 '1000 Swings Side-By-Side Simulation','Number of Swings', 'Tonnes/hr', 'Total Volume (m³)', 
                 'Total Tonnes', 'Total Trucks', '', 
@@ -293,7 +293,7 @@ if calculate_button:
             'Old Bucket': [
                 '', f"{old_capacity:.1f}", f"{user_data['material_density']:.0f}", f"{old_payload:.0f}", 
                 f"{old_total_load:.0f}", '', 
-                '', f"{dump_truck_payload_old:.0f}", f"{swings_to_fill_truck_old:.1f}", 
+                '', f"{dump_truck_payload_old:.0f}*", f"{swings_to_fill_truck_old:.1f}", 
                 f"{time_to_fill_truck_old:.1f}", f"{avg_trucks_per_hour_old:.1f}", f"{swings_per_hour_old:.0f}", f"{truck_tonnage_per_hour_old:.0f}", '', '', 
                 '1000', f"{total_tonnage_per_hour_old:.0f}", f"{total_m3_per_day_old:.0f}", 
                 f"{total_tonnage_per_day_old:.0f}", f"{total_trucks_per_day_old:.0f}", '', '',
@@ -303,7 +303,7 @@ if calculate_button:
             'New Bucket': [
                 '', f"{new_capacity:.1f}", f"{user_data['material_density']:.0f}", f"{new_payload:.0f}", 
                 f"{new_total_load:.0f}", '', 
-                '', f"{dump_truck_payload_new:.0f}", f"{swings_to_fill_truck_new:.1f}", 
+                '', f"{dump_truck_payload_new:.0f}*", f"{swings_to_fill_truck_new:.1f}", 
                 f"{time_to_fill_truck_new:.1f}", f"{avg_trucks_per_hour_new:.1f}", f"{swings_per_hour_new:.0f}", f"{truck_tonnage_per_hour_new:.0f}", '', '',
                 '1000', f"{total_tonnage_per_hour_new:.0f}", f"{total_m3_per_day_new:.0f}", 
                 f"{total_tonnage_per_day_new:.0f}", f"{total_trucks_per_day_new:.0f}", '', '',
@@ -352,8 +352,8 @@ if calculate_button:
             if df is not None:
                 st.title('Bucket Sizing and Productivity Calculator')
                 st.dataframe(df)
-                st.write(f"*Dump truck fill factor of {(100*dump_truck_payload_new/dump_truck_payload):.0f}% applied for XMOR® Bucket pass matching.")
-                st.write(f"*Dump truck fill factor of {(100*dump_truck_payload_old/dump_truck_payload):.0f}% applied for Old Bucket pass matching.")
+                st.write(f"*Dump Truck fill factor of {(100*dump_truck_payload_new/dump_truck_payload):.0f}% applied for XMOR® Bucket pass matching.")
+                st.write(f"*Dump Truck fill factor of {(100*dump_truck_payload_old/dump_truck_payload):.0f}% applied for Old Bucket pass matching.")
                 excel_file = generate_excel(df)
                 st.download_button(
                     label="Download Results In Excel",
