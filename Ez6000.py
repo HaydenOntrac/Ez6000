@@ -132,7 +132,7 @@ def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
     current_payload = dump_truck_payload
     while current_payload <= max_payload:
         swings_to_fill_truck_new = current_payload / new_payload
-        if abs(swings_to_fill_truck_new - math.ceil(swings_to_fill_truck_new)) <= 0.14:
+        if abs(swings_to_fill_truck_new - math.ceil(swings_to_fill_truck_new)) <= 0.05:
             return current_payload, swings_to_fill_truck_new
         current_payload += increment
 
@@ -148,7 +148,7 @@ def adjust_payload_for_old_bucket(dump_truck_payload, old_payload):
     current_payload = dump_truck_payload
     while current_payload <= max_payload:
         swings_to_fill_truck_old = current_payload / old_payload
-        if abs(swings_to_fill_truck_old - math.ceil(swings_to_fill_truck_old)) <= 0.14:
+        if abs(swings_to_fill_truck_old - math.ceil(swings_to_fill_truck_old)) <= 0.05:
             return current_payload, swings_to_fill_truck_old
         current_payload += increment
 
