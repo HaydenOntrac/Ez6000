@@ -133,6 +133,7 @@ def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
     while current_payload <= max_payload:
         swings_to_fill_truck_new = current_payload / new_payload
         if abs(swings_to_fill_truck_new - math.ceil(swings_to_fill_truck_new)) <= 0.14:
+            st.write("*Dump truck fill factor of {(100*current_payload/dump_truck_payload)}% applied for pass matching.")
             return current_payload, swings_to_fill_truck_new
         current_payload += increment
 
@@ -149,6 +150,7 @@ def adjust_payload_for_old_bucket(dump_truck_payload, old_payload):
     while current_payload <= max_payload:
         swings_to_fill_truck_old = current_payload / old_payload
         if abs(swings_to_fill_truck_old - math.ceil(swings_to_fill_truck_old)) <= 0.14:
+            st.write("*Dump truck fill factor of {(100*current_payload/dump_truck_payload)}% applied for pass matching.")
             return current_payload, swings_to_fill_truck_old
         current_payload += increment
 
@@ -282,7 +284,7 @@ if calculate_button:
             'Description': [
                 'Side-By-Side Bucket Comparison', 'Capacity (m³)', 'Material Density (kg/m³)', 'Bucket Payload (kg)', 
                 'Total Suspended Load (kg)', '', 
-                'Loadout Productivity & Truck Pass Simulation', 'Dump Truck Payload (kg)', 'Avg No. Swings to Fill Truck', 
+                'Loadout Productivity & Truck Pass Simulation*', 'Dump Truck Payload (kg)', 'Avg No. Swings to Fill Truck', 
                 'Time to Fill Truck (min)', 'Avg Trucks/Hour @ 75% eff', 'Swings/Hour', 'Tonnes/Hour', '', 
                 '1000 Swings Side-By-Side Simulation','Number of Swings', 'Tonnes/hr', 'Total Volume (m³)', 
                 'Total Tonnes', 'Total Trucks', '', 
@@ -347,6 +349,7 @@ if calculate_button:
         }
             
             df = pd.DataFrame(data)
+
             
             if df is not None:
                 st.title('Bucket Sizing and Productivity Calculator')
