@@ -349,12 +349,11 @@ if calculate_button:
             
             df = pd.DataFrame(data)
             
-            st.write(f"*Dump truck fill factor of {(100*dump_truck_payload_new/dump_truck_payload):.0f}% applied for XMOR® Bucket pass matching.")
-            st.write(f"*Dump truck fill factor of {(100*dump_truck_payload_old/dump_truck_payload):.0f}% applied for Old Bucket pass matching.")
-            
             if df is not None:
                 st.title('Bucket Sizing and Productivity Calculator')
                 st.dataframe(df)
+                st.write(f"*Dump truck fill factor of {(100*dump_truck_payload_new/dump_truck_payload):.0f}% applied for XMOR® Bucket pass matching.")
+                st.write(f"*Dump truck fill factor of {(100*dump_truck_payload_old/dump_truck_payload):.0f}% applied for Old Bucket pass matching.")
                 excel_file = generate_excel(df)
                 st.download_button(
                     label="Download Results In Excel",
