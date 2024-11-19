@@ -210,7 +210,6 @@ if calculate_button:
         # Load selected bucket data
         selected_bucket_csv = bhc_bucket_csv if select_bhc else bucket_csv
         bucket_data = load_bucket_data(selected_bucket_csv)
-        dump_truck_data = load_dump_truck_data(dump_truck_csv)
     
         optimal_bucket = select_optimal_bucket(user_data, bucket_data, swl)
     
@@ -221,7 +220,7 @@ if calculate_button:
             st.write(f"Safe Working Load at {user_data['reach']}m reach ({user_data['make']} {user_data['model']}): {swl:.0f}kg")
             st.write(" ")
             st.write(f"Calculations based on the {user_data['make']} {user_data['model']} with a {user_data['boom_length']}m boom, {user_data['arm_length']}m arm, {user_data['cwt']}kg counterweight, {user_data['shoe_width']}mm shoes, operating at a reach of {user_data['reach']}m, and with a material density of {user_data['material_density']:.0f}kg/m³.")
-            st.write(f"Dump Truck: {dump_truck_data['brand']} {dump_truck_data['model']}, rated payload = {user_data['dump_truck_payload'] * 1000 :.0f}kg")
+            st.write(f"Dump Truck: {truck_brand} {truck_model}, rated payload = {user_data['dump_truck_payload'] * 1000 :.0f}kg")
 
             # Show table
             old_capacity = user_data['current_bucket_size']
