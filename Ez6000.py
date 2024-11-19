@@ -322,7 +322,7 @@ if calculate_button:
                 f"{total_m3_per_day_new - total_m3_per_day_old:.0f}", 
                 f"{total_tonnage_per_day_new - total_tonnage_per_day_old:.0f}", 
                 f"{total_trucks_per_day_new - total_trucks_per_day_old:.0f}", '', 
-                '', '',
+                '', '-',
                 f"{1.1 * total_m3_per_day_new - total_m3_per_day_old:.0f}", 
                 f"{1.1 * total_tonnage_per_day_new - total_tonnage_per_day_old:.0f}", 
                 f"{1.1 * total_trucks_per_day_new - total_trucks_per_day_old:.0f}"
