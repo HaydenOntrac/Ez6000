@@ -89,7 +89,7 @@ truck_brand = st.selectbox("Select Dump Truck Brand", dump_truck_data['brand'].u
 truck_type = st.selectbox("Select Dump Truck Type", dump_truck_data[dump_truck_data['brand'] == truck_brand]['type'].unique())
 truck_model = st.selectbox("Select Dump Truck Model", dump_truck_data[(dump_truck_data['brand'] == truck_brand) & 
                                                                      (dump_truck_data['type'] == truck_type)]['model'].unique())
-truck_payload = st.selectbox("Select Dump Truck Payload (tons)", dump_truck_data[dump_truck_data['model'] == truck_model]['payload'].unique())
+truck_payload = st.selectbox("Select Dump Truck Payload (tonnes)", dump_truck_data[dump_truck_data['model'] == truck_model]['payload'].unique())
 
 # Additional Inputs
 
