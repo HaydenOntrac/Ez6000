@@ -81,7 +81,7 @@ shoe_width = st.selectbox("Select Shoe Width (mm)", filtered_data_cwt['shoe_widt
 
 # Step 7: Filter further by selected shoe width and select Reach
 filtered_data_shoe = filtered_data_cwt[filtered_data_cwt['shoe_width'] == shoe_width]
-reach = st.selectbox("Select Reach (m)", filtered_data_shoe['reach'].unique())
+reach = st.selectbox("Select Operating Reach (m)", filtered_data_shoe['reach'].unique())
 
 # Dump truck inputs
 st.title("Dump Truck Selection")
