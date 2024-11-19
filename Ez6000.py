@@ -318,11 +318,11 @@ if calculate_button:
                 f"{avg_trucks_per_hour_new - avg_trucks_per_hour_old:.1f}", 
                 f"{swings_per_hour_new - swings_per_hour_old:.0f}", 
                 f"{truck_tonnage_per_hour_new - truck_tonnage_per_hour_old:.0f}", 
-                '', '', '100', 
+                '', '', '-', 
                 f"{total_m3_per_day_new - total_m3_per_day_old:.0f}", 
                 f"{total_tonnage_per_day_new - total_tonnage_per_day_old:.0f}", 
                 f"{total_trucks_per_day_new - total_trucks_per_day_old:.0f}", '', 
-                '', '-',
+                '', '100',
                 f"{1.1 * total_m3_per_day_new - total_m3_per_day_old:.0f}", 
                 f"{1.1 * total_tonnage_per_day_new - total_tonnage_per_day_old:.0f}", 
                 f"{1.1 * total_trucks_per_day_new - total_trucks_per_day_old:.0f}"
