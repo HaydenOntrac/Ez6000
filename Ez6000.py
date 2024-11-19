@@ -126,7 +126,7 @@ def calculate_bucket_load(bucket_size, material_density):
 
 def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
     max_payload = dump_truck_payload * 1.10  # Allow up to 10% adjustment
-    increment = dump_truck_payload * 0.01   # Fine adjustment increments
+    increment = dump_truck_payload * 0.001   # Fine adjustment increments
 
     # Try to achieve swing values within ±0.14 tolerance
     current_payload = dump_truck_payload
@@ -142,7 +142,7 @@ def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
 
 def adjust_payload_for_old_bucket(dump_truck_payload, old_payload):
     max_payload = dump_truck_payload * 1.10  # Allow up to 10% adjustment
-    increment = dump_truck_payload * 0.01   # Fine adjustment increments
+    increment = dump_truck_payload * 0.001   # Fine adjustment increments
 
     # Try to achieve swing values within ±0.14 tolerance
     current_payload = dump_truck_payload
