@@ -272,8 +272,8 @@ if calculate_button:
             total_tonnage_per_day_new = total_m3_per_day_new * user_data['material_density'] / 1000
     
             # Total number of trucks per day
-            total_trucks_per_day_old = total_tonnage_per_day_old / dump_truck_payload_old * 1000
-            total_trucks_per_day_new = total_tonnage_per_day_new / dump_truck_payload_new * 1000
+            total_trucks_per_day_old = total_tonnage_per_day_old / dump_truck_payload * 1000
+            total_trucks_per_day_new = total_tonnage_per_day_new / dump_truck_payload * 1000
 
             Productivity = f"{(1.1 * total_tonnage_per_hour_new - total_tonnage_per_hour_old) / total_tonnage_per_hour_old * 100:.0}%"
     
@@ -292,7 +292,7 @@ if calculate_button:
             'Old Bucket': [
                 '', f"{old_capacity:.1f}", f"{user_data['material_density']:.0f}", f"{old_payload:.0f}", 
                 f"{old_total_load:.0f}", '', 
-                '', f"{dump_truck_payload:.0f}", f"{swings_to_fill_truck_old:.1f}", 
+                '', f"{dump_truck_payload_old:.0f}", f"{swings_to_fill_truck_old:.1f}", 
                 f"{time_to_fill_truck_old:.1f}", f"{avg_trucks_per_hour_old:.1f}", f"{swings_per_hour_old:.0f}", f"{truck_tonnage_per_hour_old:.0f}", '', '', 
                 '1000', f"{total_tonnage_per_hour_old:.0f}", f"{total_m3_per_day_old:.0f}", 
                 f"{total_tonnage_per_day_old:.0f}", f"{total_trucks_per_day_old:.0f}", '', '',
@@ -302,7 +302,7 @@ if calculate_button:
             'New Bucket': [
                 '', f"{new_capacity:.1f}", f"{user_data['material_density']:.0f}", f"{new_payload:.0f}", 
                 f"{new_total_load:.0f}", '', 
-                '', f"{dump_truck_payload:.0f}", f"{swings_to_fill_truck_new:.1f}", 
+                '', f"{dump_truck_payload_new:.0f}", f"{swings_to_fill_truck_new:.1f}", 
                 f"{time_to_fill_truck_new:.1f}", f"{avg_trucks_per_hour_new:.1f}", f"{swings_per_hour_new:.0f}", f"{truck_tonnage_per_hour_new:.0f}", '', '',
                 '1000', f"{total_tonnage_per_hour_new:.0f}", f"{total_m3_per_day_new:.0f}", 
                 f"{total_tonnage_per_day_new:.0f}", f"{total_trucks_per_day_new:.0f}", '', '',
