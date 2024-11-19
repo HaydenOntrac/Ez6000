@@ -138,7 +138,23 @@ def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
 
     # If no suitable payload is found, return the original payload with calculated swings
     swings_to_fill_truck_new = dump_truck_payload / new_payload
-    return dump_truck_payload, math.ceil(swings_to_fill_truck_new)
+    return dump_truck_payload_new, math.ceil(swings_to_fill_truck_new)
+
+def adjust_payload_for_old_bucket(dump_truck_payload, old_payload):
+    max_payload = dump_truck_payload * 1.10  # Allow up to 10% adjustment
+    increment = dump_truck_payload * 0.01   # Fine adjustment increments
+
+    # Try to achieve swing values within ±0.1 tolerance
+    current_payload = dump_truck_payload
+    while current_payload <= max_payload:
+        swings_to_fill_truck_new = current_payload / new_payload
+        if abs(swings_to_fill_truck_new - math.ceil(swings_to_fill_truck_new)) <= 0.14:
+            return current_payload, math.ceil(swings_to_fill_truck_new)
+        current_payload += increment
+
+    # If no suitable payload is found, return the original payload with calculated swings
+    swings_to_fill_truck_old = dump_truck_payload / old_payload
+    return dump_truck_payload_old, math.ceil(swings_to_fill_truck_old)
 
 def select_optimal_bucket(user_data, bucket_data, swl):
     current_bucket_size = user_data['current_bucket_size']
@@ -217,8 +233,8 @@ if calculate_button:
             new_total_load = optimal_bucket['total_bucket_weight']  # Corrected variable
 
             # Adjust payload for the new bucket using the function
-            dump_truck_payload, swings_to_fill_truck_new = adjust_payload_for_new_bucket(dump_truck_payload, new_payload)
-            swings_to_fill_truck_old = dump_truck_payload / old_payload
+            dump_truck_payload_new, swings_to_fill_truck_new = adjust_payload_for_new_bucket(dump_truck_payload, new_payload)
+            dump_truck_payload_old, swings_to_fill_truck_old = adjust_payload_for_old_bucket(dump_truck_payload, old_payload)
     
             # Time to fill truck in minutes
             time_to_fill_truck_old = swings_to_fill_truck_old / machine_swings_per_minute
@@ -244,8 +260,8 @@ if calculate_button:
             total_tonnage_per_hour_new = total_swings_per_hour * new_capacity * user_data['material_density'] / 1000
     
             # Production (t/hr)
-            tonnage_per_hour_old = avg_trucks_per_hour_old * dump_truck_payload / 1000
-            tonnage_per_hour_new = avg_trucks_per_hour_new * dump_truck_payload / 1000
+            tonnage_per_hour_old = avg_trucks_per_hour_old * dump_truck_payload_old / 1000
+            tonnage_per_hour_new = avg_trucks_per_hour_new * dump_truck_payload_new / 1000
     
             # Assuming 1800 swings in a day
             total_m3_per_day_old = 1000 * old_capacity
@@ -256,8 +272,8 @@ if calculate_button:
             total_tonnage_per_day_new = total_m3_per_day_new * user_data['material_density'] / 1000
     
             # Total number of trucks per day
-            total_trucks_per_day_old = total_tonnage_per_day_old / dump_truck_payload * 1000
-            total_trucks_per_day_new = total_tonnage_per_day_new / dump_truck_payload * 1000
+            total_trucks_per_day_old = total_tonnage_per_day_old / dump_truck_payload_old * 1000
+            total_trucks_per_day_new = total_tonnage_per_day_new / dump_truck_payload_new * 1000
 
             Productivity = f"{(1.1 * total_tonnage_per_hour_new - total_tonnage_per_hour_old) / total_tonnage_per_hour_old * 100:.0}%"
     
