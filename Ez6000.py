@@ -133,7 +133,6 @@ def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
     while current_payload <= max_payload:
         swings_to_fill_truck_new = current_payload / new_payload
         if abs(swings_to_fill_truck_new - math.ceil(swings_to_fill_truck_new)) <= 0.14:
-            st.write(f"*Dump truck fill factor of {(100*current_payload/dump_truck_payload):.0f}% applied for XMOR® Bucket pass matching.")
             return current_payload, swings_to_fill_truck_new
         current_payload += increment
 
@@ -150,7 +149,6 @@ def adjust_payload_for_old_bucket(dump_truck_payload, old_payload):
     while current_payload <= max_payload:
         swings_to_fill_truck_old = current_payload / old_payload
         if abs(swings_to_fill_truck_old - math.ceil(swings_to_fill_truck_old)) <= 0.14:
-            st.write(f"*Dump truck fill factor of {(100*current_payload/dump_truck_payload):.0f}% applied for Old Bucket pass matching.")
             return current_payload, swings_to_fill_truck_old
         current_payload += increment
 
@@ -350,7 +348,9 @@ if calculate_button:
         }
             
             df = pd.DataFrame(data)
-
+            
+            st.write(f"*Dump truck fill factor of {(100*dump_truck_payload_new/dump_truck_payload):.0f}% applied for XMOR® Bucket pass matching.")
+            st.write(f"*Dump truck fill factor of {(100*dump_truck_payload_old/dump_truck_payload):.0f}% applied for Old Bucket pass matching.")
             
             if df is not None:
                 st.title('Bucket Sizing and Productivity Calculator')
