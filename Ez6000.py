@@ -128,7 +128,7 @@ def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
     max_payload = dump_truck_payload * 1.10  # Allow up to 10% adjustment
     increment = dump_truck_payload * 0.01   # Fine adjustment increments
 
-    # Try to achieve swing values within ±0.1 tolerance
+    # Try to achieve swing values within ±0.14 tolerance
     current_payload = dump_truck_payload
     while current_payload <= max_payload:
         swings_to_fill_truck_new = current_payload / new_payload
@@ -138,13 +138,13 @@ def adjust_payload_for_new_bucket(dump_truck_payload, new_payload):
 
     # If no suitable payload is found, return the original payload with calculated swings
     swings_to_fill_truck_new = dump_truck_payload / new_payload
-    return dump_truck_payload_new, math.ceil(swings_to_fill_truck_new)
+    return dump_truck_payload_new, swings_to_fill_truck_new
 
 def adjust_payload_for_old_bucket(dump_truck_payload, old_payload):
     max_payload = dump_truck_payload * 1.10  # Allow up to 10% adjustment
     increment = dump_truck_payload * 0.01   # Fine adjustment increments
 
-    # Try to achieve swing values within ±0.1 tolerance
+    # Try to achieve swing values within ±0.14 tolerance
     current_payload = dump_truck_payload
     while current_payload <= max_payload:
         swings_to_fill_truck_new = current_payload / new_payload
@@ -154,7 +154,7 @@ def adjust_payload_for_old_bucket(dump_truck_payload, old_payload):
 
     # If no suitable payload is found, return the original payload with calculated swings
     swings_to_fill_truck_old = dump_truck_payload / old_payload
-    return dump_truck_payload_old, math.ceil(swings_to_fill_truck_old)
+    return dump_truck_payload_old, swings_to_fill_truck_old
 
 def select_optimal_bucket(user_data, bucket_data, swl):
     current_bucket_size = user_data['current_bucket_size']
