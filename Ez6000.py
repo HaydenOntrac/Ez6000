@@ -353,9 +353,9 @@ if calculate_button:
                 st.title('Bucket Sizing and Productivity Calculator')
                 st.dataframe(df)
                 if dump_truck_payload_new != dump_truck_payload:
-                    st.write(f"*Dump Truck fill factor of {(100*dump_truck_payload_new/dump_truck_payload):.0f}% applied for XMOR® Bucket pass matching.")
+                    st.write(f"*Dump Truck fill factor of {(100*dump_truck_payload_new/dump_truck_payload):.1f}% applied for XMOR® Bucket pass matching.")
                 if dump_truck_payload_old != dump_truck_payload:
-                    st.write(f"*Dump Truck fill factor of {(100*dump_truck_payload_old/dump_truck_payload):.0f}% applied for Old Bucket pass matching.")
+                    st.write(f"*Dump Truck fill factor of {(100*dump_truck_payload_old/dump_truck_payload):.1f}% applied for Old Bucket pass matching.")
                 excel_file = generate_excel(df)
                 st.download_button(
                     label="Download Results In Excel",
